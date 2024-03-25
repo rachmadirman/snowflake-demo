@@ -1,10 +1,7 @@
 package com.izeno.snowflakedemo.controller;
 
 import com.izeno.snowflakedemo.entity.ConfigUserData;
-import com.izeno.snowflakedemo.model.DataRq;
-import com.izeno.snowflakedemo.model.FilterRs;
-import com.izeno.snowflakedemo.model.PayloadRs;
-import com.izeno.snowflakedemo.model.UpdateColumn;
+import com.izeno.snowflakedemo.model.*;
 import com.izeno.snowflakedemo.usecase.BaseUsecase;
 import com.izeno.snowflakedemo.usecase.FetchDataUsecase;
 import jakarta.servlet.http.HttpServletRequest;
@@ -77,7 +74,7 @@ public class DemoController {
     @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<?> getAllColumn(HttpServletRequest httpServletRequest) throws Exception {
 
-        List<ConfigUserData> response = baseUsecase.getAllColumn();
+        ActiveColumnRs response = baseUsecase.getAllColumn();
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(response);

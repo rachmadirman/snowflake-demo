@@ -3,10 +3,7 @@ package com.izeno.snowflakedemo.usecase;
 import com.google.gson.Gson;
 import com.izeno.snowflakedemo.entity.ConfigUserData;
 import com.izeno.snowflakedemo.entity.EntityData;
-import com.izeno.snowflakedemo.model.DataRq;
-import com.izeno.snowflakedemo.model.PayloadRs;
-import com.izeno.snowflakedemo.model.UpdateColumn;
-import com.izeno.snowflakedemo.model.UserDataRs;
+import com.izeno.snowflakedemo.model.*;
 import com.izeno.snowflakedemo.repository.ConfigUserRepository;
 import com.izeno.snowflakedemo.repository.DataRepository;
 import com.izeno.snowflakedemo.service.DataServiceImpl;
@@ -85,11 +82,16 @@ public class BaseUsecase {
         }
     }
 
-    public List<ConfigUserData> getAllColumn() throws Exception {
+    public ActiveColumnRs getAllColumn() throws Exception {
 
         try {
 
-            return configUserRepository.getActiveColumn();
+            ActiveColumnRs activeColumnRs = new ActiveColumnRs();
+            List<String> stringList = configUserRepository.getActiveColumn();
+            activeColumnRs.setActivecolumn(stringList);
+
+
+            return activeColumnRs;
 
         }catch (Exception e){
             throw new Exception();
@@ -101,11 +103,11 @@ public class BaseUsecase {
         try {
 
             PayloadRs payloadRs = new PayloadRs();
-            int status = Integer.parseInt(columnName.getStatus());
-            List<String> columnNameList = columnName.getColumnList();
+            /*int status = Integer.parseInt(columnName.getStatus());
+            List<String> columnNameList = columnName.getColumnList();*/
 
-            for (String s : columnNameList){
-                int rowupdated = configUserRepository.updateColumn(status, s);
+            for (String s : columnName.getColumnList()){
+                int rowupdated = configUserRepository.updateColumn(s);
             }
 
             payloadRs.setStatus("OK");

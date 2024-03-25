@@ -1,5 +1,6 @@
 package com.izeno.snowflakedemo.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
@@ -7,6 +8,6 @@ import java.util.List;
 @Data
 public class UpdateColumn {
 
-    private String status;
+    @JsonProperty("update_column")
     private List<String> columnList;
 }
