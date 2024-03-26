@@ -1,7 +1,6 @@
 package com.izeno.snowflakedemo.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.persistence.Column;
 import lombok.Data;
 
 @Data

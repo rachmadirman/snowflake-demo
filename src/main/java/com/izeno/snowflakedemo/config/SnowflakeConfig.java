@@ -19,7 +19,9 @@ public class SnowflakeConfig {
         DataSourceProperties dataSourceProperties = new DataSourceProperties();
         dataSourceProperties.setUsername("Kennard");
         dataSourceProperties.setPassword("891102iZeno");
-        dataSourceProperties.setUrl("jdbc:snowflake://br00321.ap-southeast-1.snowflakecomputing.com/?warehouse=COMPUTE_WH&db=POC_SAPURA&schema=API_INGESTION&role=SNOWPARK_ROLE");
+        //dataSourceProperties.setUrl("jdbc:snowflake://br00321.ap-southeast-1.snowflakecomputing.com/?useSSL=false&requireSSL=false&user=Kennard&warehouse=COMPUTE_WH&db=POC_SAPURA&schema=API_INGESTION&role=SNOWPARK_ROLE&tracing=ALL");
+        dataSourceProperties.setUrl("jdbc:snowflake://br00321.ap-southeast-1.snowflakecomputing.com?useSSL=false&user=Kennard&password=891102iZeno&warehouse=COMPUTE_WH&db=POC_SAPURA&schema=API_INGESTION&role=SNOWPARK_ROLE&tracing=ALL");
+        //dataSourceProperties.setUrl("jdbc:snowflake://54.151.170.173:443/?useSSL=false&requireSSL=false&user=Kennard&warehouse=COMPUTE_WH&db=POC_SAPURA&schema=API_INGESTION&role=SNOWPARK_ROLE&tracing=ALL");
         dataSourceProperties.setDriverClassName("net.snowflake.client.jdbc.SnowflakeDriver");
 
         HikariDataSource hikariObj = (HikariDataSource) dataSourceProperties.initializeDataSourceBuilder().build();
