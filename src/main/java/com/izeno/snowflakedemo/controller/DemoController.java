@@ -1,6 +1,5 @@
 package com.izeno.snowflakedemo.controller;
 
-import com.izeno.snowflakedemo.entity.ConfigUserData;
 import com.izeno.snowflakedemo.model.*;
 import com.izeno.snowflakedemo.usecase.BaseUsecase;
 import com.izeno.snowflakedemo.usecase.FetchDataUsecase;
@@ -30,7 +29,6 @@ public class DemoController {
 
     @PostMapping(value = "/forward")
     @Procedure(MediaType.APPLICATION_JSON_VALUE)
-    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<?> forwardData(@Valid @RequestBody List<DataRq> dataRq,
                                          HttpServletRequest httpServletRequest) throws Exception {
 
@@ -52,7 +50,6 @@ public class DemoController {
 
     @GetMapping(value = "/fetch/all")
     @Procedure(MediaType.APPLICATION_JSON_VALUE)
-    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<?> getAllData(HttpServletRequest httpServletRequest) throws Exception {
 
         return ResponseEntity.status(HttpStatus.OK)
@@ -62,7 +59,6 @@ public class DemoController {
 
     @GetMapping(value = "/fetchv2/all")
     @Procedure(MediaType.APPLICATION_JSON_VALUE)
-    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<?> getAllDataV2(HttpServletRequest httpServletRequest) throws Exception {
 
         return ResponseEntity.status(HttpStatus.OK)
@@ -71,7 +67,6 @@ public class DemoController {
 
     @GetMapping(value = "/active/column")
     @Procedure(MediaType.APPLICATION_JSON_VALUE)
-    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<?> getAllColumn(HttpServletRequest httpServletRequest) throws Exception {
 
         ActiveColumnRs response = baseUsecase.getAllColumn();
@@ -83,7 +78,6 @@ public class DemoController {
 
     @GetMapping(value = "/synch")
     @Procedure(MediaType.APPLICATION_JSON_VALUE)
-    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<?> synchData() throws Exception {
 
         PayloadRs payloadRs = baseUsecase.synchData();
@@ -94,7 +88,6 @@ public class DemoController {
 
     @GetMapping(value = "/testapi")
     @Procedure(MediaType.APPLICATION_JSON_VALUE)
-    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<?> testApi(){
 
         return ResponseEntity.status(HttpStatus.OK)
