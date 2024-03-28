@@ -1,6 +1,7 @@
 package com.izeno.snowflakedemo.service;
 
 import com.izeno.snowflakedemo.model.UserDataRs;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @Service
+@Slf4j
 public class TalendService {
 
     @Autowired
@@ -28,10 +30,8 @@ public class TalendService {
 
         }catch (Exception e){
             e.printStackTrace();
+            log.error("ERROR SYNC DATA : {}", e.getMessage());
             throw new Exception(e);
-
         }
-
-
     }
 }

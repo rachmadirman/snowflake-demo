@@ -8,6 +8,7 @@ import com.izeno.snowflakedemo.repository.ConfigUserRepository;
 import com.izeno.snowflakedemo.repository.DataRepository;
 import com.izeno.snowflakedemo.service.DataServiceImpl;
 import com.izeno.snowflakedemo.service.TalendService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 
 @Component
+@Slf4j
 public class BaseUsecase {
 
     @Autowired
@@ -110,6 +112,15 @@ public class BaseUsecase {
                 int rowupdated = configUserRepository.updateColumn(s);
             }
 
+            //drop table
+            int result = dataRepository.deleteData();
+            log.info("Success delete  data in db : {}", result);
+
+            //call tallend sync
+            String response =  talendService.getData();
+            log.info("Success calling talend api, response : {}", response);
+
+
             payloadRs.setStatus("OK");
             payloadRs.setStatusCode(200);
             payloadRs.setStatusDescription("Success Update Column");
@@ -117,6 +128,7 @@ public class BaseUsecase {
             return  payloadRs;
 
         }catch (Exception e){
+            log.error("ERROR UPDATE COLUMN : {}", e.getMessage());
             throw new Exception();
         }
     }

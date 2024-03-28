@@ -14,5 +14,8 @@ public interface DataRepository extends CrudRepository<EntityData, Integer> {
     @Query(value = "SELECT COLUMN_NAME  FROM INFORMATION_SCHEMA.\"COLUMNS\"  WHERE TABLE_NAME = 'USER_DATA' ORDER BY ORDINAL_POSITION ASC ", nativeQuery = true)
     List<String> getAllColumn();
 
+    @Query(value = "DELETE  FROM POC_SAPURA.API_INGESTION.USER_DATA ", nativeQuery = true)
+    int deleteData();
+
 
 }
